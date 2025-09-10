@@ -1,0 +1,59 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  width: 80%;
+  margin: 20px auto;
+}
+
+.emp-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.emp-table th, .emp-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.emp-table th {
+  background: #1e90ff;
+  color: white;
+}
+
+.btn {
+  padding: 5px 10px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn.edit {
+  background: orange;
+  color: white;
+}
+
+.btn.delete {
+  background: red;
+  color: white;
+}
+
+.btn.save {
+  background: green;
+  color: white;
+}
+
+.form-container {
+  width: 400px;
+  margin: 30px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #f9f9f9;
+}
