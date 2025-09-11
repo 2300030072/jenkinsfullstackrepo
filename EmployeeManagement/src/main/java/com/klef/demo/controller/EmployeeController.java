@@ -12,7 +12,7 @@ import com.klef.demo.service.EmployeeService;
 
 @RestController
 @RequestMapping("/employeeapi")
-@CrossOrigin(origins = "http://localhost:2030")
+@CrossOrigin(origins = "*")
 public class EmployeeController {
 
     @Autowired
