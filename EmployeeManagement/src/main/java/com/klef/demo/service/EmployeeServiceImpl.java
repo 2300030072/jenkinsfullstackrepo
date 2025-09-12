@@ -1,8 +1,11 @@
 package com.klef.demo.service;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.klef.demo.entity.Employee;
 import com.klef.demo.repository.EmployeeRepository;
 
@@ -10,32 +13,31 @@ import com.klef.demo.repository.EmployeeRepository;
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
-    private EmployeeRepository repo;
+    private EmployeeRepository employeeRepository;
 
     @Override
-    public Employee addEmployee(Employee emp) {
-        return repo.save(emp);
+    public Employee addEmployee(Employee employee) {
+        return employeeRepository.save(employee);
     }
 
     @Override
     public List<Employee> getAllEmployees() {
-        return repo.findAll();
+        return employeeRepository.findAll();
     }
 
     @Override
     public Employee getEmployeeById(int id) {
-        return repo.findById(id).orElse(null);
+        Optional<Employee> opt = employeeRepository.findById(id);
+        return opt.orElse(null);
     }
 
     @Override
-    public Employee updateEmployee(Employee emp) {
-        // save() will update if id already exists
-        return repo.save(emp);
+    public Employee updateEmployee(Employee employee) {
+        return employeeRepository.save(employee);
     }
 
     @Override
     public void deleteEmployeeById(int id) {
-        repo.deleteById(id);
+        employeeRepository.deleteById(id);
     }
 }
-

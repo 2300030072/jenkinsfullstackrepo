@@ -11,7 +11,7 @@ import com.klef.demo.entity.Employee;
 import com.klef.demo.service.EmployeeService;
 
 @RestController
-@RequestMapping("/employeeapi")
+@RequestMapping("/employeeapi/")   // ✅ added trailing slash (like StudentController)
 @CrossOrigin(origins = "*")
 public class EmployeeController {
 

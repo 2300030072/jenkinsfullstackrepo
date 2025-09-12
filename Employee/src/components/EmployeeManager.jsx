@@ -17,7 +17,7 @@ const EmployeeManager = () => {
   const [message, setMessage] = useState("");
   const [editMode, setEditMode] = useState(false);
 
-  const baseUrl = config.url; // already has /employeeapi
+  const baseUrl = `${config.url}/employeeapi`;
 
   useEffect(() => {
     fetchAllEmployees();
@@ -111,11 +111,7 @@ const EmployeeManager = () => {
   return (
     <div className="employee-container">
       {message && (
-        <div
-          className={`message-banner ${
-            message.toLowerCase().includes("error") ? "error" : "success"
-          }`}
-        >
+        <div className={`message-banner ${message.toLowerCase().includes("error") ? "error" : "success"}`}>
           {message}
         </div>
       )}
@@ -127,74 +123,31 @@ const EmployeeManager = () => {
         <h3>{editMode ? "Edit Employee" : "Add Employee"}</h3>
         <div className="form-grid">
           {editMode && (
-            <input
-              type="text"
-              name="id"
-              placeholder="ID"
-              value={employee.id}
-              readOnly
-            />
+            <input type="text" name="id" placeholder="ID" value={employee.id} readOnly />
           )}
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            value={employee.name}
-            onChange={handleChange}
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={employee.email}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            name="role"
-            placeholder="Role"
-            value={employee.role}
-            onChange={handleChange}
-          />
-          <input
-            type="number"
-            name="salary"
-            placeholder="Salary"
-            value={employee.salary}
-            onChange={handleChange}
-          />
+          <input type="text" name="name" placeholder="Name" value={employee.name} onChange={handleChange} />
+          <input type="email" name="email" placeholder="Email" value={employee.email} onChange={handleChange} />
+          <input type="text" name="role" placeholder="Role" value={employee.role} onChange={handleChange} />
+          <input type="number" name="salary" placeholder="Salary" value={employee.salary} onChange={handleChange} />
         </div>
 
         <div className="btn-group">
           {!editMode ? (
-            <button className="btn-blue" onClick={addEmployee}>
-              Add Employee
-            </button>
+            <button className="btn-blue" onClick={addEmployee}>Add Employee</button>
           ) : (
             <>
-              <button className="btn-green" onClick={updateEmployee}>
-                Update Employee
-              </button>
-              <button className="btn-gray" onClick={resetForm}>
-                Cancel
-              </button>
+              <button className="btn-green" onClick={updateEmployee}>Update Employee</button>
+              <button className="btn-gray" onClick={resetForm}>Cancel</button>
             </>
           )}
         </div>
       </div>
 
-      {/* Get by ID */}
+      {/* Get Employee By ID */}
       <div>
         <h3>Get Employee By ID</h3>
-        <input
-          type="number"
-          value={idToFetch}
-          onChange={(e) => setIdToFetch(e.target.value)}
-          placeholder="Enter ID"
-        />
-        <button className="btn-blue" onClick={getEmployeeById}>
-          Fetch
-        </button>
+        <input type="number" value={idToFetch} onChange={(e) => setIdToFetch(e.target.value)} placeholder="Enter ID" />
+        <button className="btn-blue" onClick={getEmployeeById}>Fetch</button>
 
         {fetchedEmployee && (
           <div>
@@ -214,36 +167,22 @@ const EmployeeManager = () => {
             <table>
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Role</th>
-                  <th>Salary</th>
+                  {Object.keys(employee).map((key) => (
+                    <th key={key}>{key}</th>
+                  ))}
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {employees.map((emp) => (
                   <tr key={emp.id}>
-                    <td>{emp.id}</td>
-                    <td>{emp.name}</td>
-                    <td>{emp.email}</td>
-                    <td>{emp.role}</td>
-                    <td>{emp.salary}</td>
+                    {Object.keys(employee).map((key) => (
+                      <td key={key}>{emp[key]}</td>
+                    ))}
                     <td>
                       <div className="action-buttons">
-                        <button
-                          className="btn-green"
-                          onClick={() => handleEdit(emp)}
-                        >
-                          Edit
-                        </button>
-                        <button
-                          className="btn-red"
-                          onClick={() => deleteEmployee(emp.id)}
-                        >
-                          Delete
-                        </button>
+                        <button className="btn-green" onClick={() => handleEdit(emp)}>Edit</button>
+                        <button className="btn-red" onClick={() => deleteEmployee(emp.id)}>Delete</button>
                       </div>
                     </td>
                   </tr>
