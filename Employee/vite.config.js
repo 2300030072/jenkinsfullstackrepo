@@ -3,5 +3,5 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/reactstudentapi/', // matches backend context path
+  base: '/reactemployeeapi/', // matches backend context path
 })
