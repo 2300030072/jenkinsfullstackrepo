@@ -11,34 +11,29 @@ import com.klef.demo.entity.Employee;
 import com.klef.demo.service.EmployeeService;
 
 @RestController
-@RequestMapping("/employeeapi/")   // ✅ added trailing slash (like StudentController)
+@RequestMapping("/employeeapi/")   
 @CrossOrigin(origins = "*")
 public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
 
-    // ✅ Home (health check)
     @GetMapping("/")
     public String home() {
         return "Employee Management API is running!";
     }
 
-    // ✅ Add employee
     @PostMapping("/add")
     public ResponseEntity<Employee> addEmployee(@RequestBody Employee emp) {
         Employee saved = employeeService.addEmployee(emp);
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
-    }
 
-    // ✅ Get all employees
     @GetMapping("/all")
     public ResponseEntity<List<Employee>> getAllEmployees() {
         List<Employee> employees = employeeService.getAllEmployees();
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
 
-    // ✅ Get employee by ID
     @GetMapping("/get/{id}")
     public ResponseEntity<?> getEmployeeById(@PathVariable int id) {
         Employee emp = employeeService.getEmployeeById(id);
@@ -49,7 +44,6 @@ public class EmployeeController {
         }
     }
 
-    // ✅ Update employee
     @PutMapping("/update")
     public ResponseEntity<?> updateEmployee(@RequestBody Employee emp) {
         Employee existing = employeeService.getEmployeeById(emp.getId());
@@ -61,7 +55,6 @@ public class EmployeeController {
         }
     }
 
-    // ✅ Delete employee
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteEmployee(@PathVariable int id) {
         Employee existing = employeeService.getEmployeeById(id);
