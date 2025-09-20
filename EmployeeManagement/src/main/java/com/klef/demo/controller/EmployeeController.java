@@ -11,7 +11,7 @@ import com.klef.demo.entity.Employee;
 import com.klef.demo.service.EmployeeService;
 
 @RestController
-@RequestMapping("/employeeapi/")   
+@RequestMapping("/employeeapi")
 @CrossOrigin(origins = "*")
 public class EmployeeController {
 
@@ -27,6 +27,7 @@ public class EmployeeController {
     public ResponseEntity<Employee> addEmployee(@RequestBody Employee emp) {
         Employee saved = employeeService.addEmployee(emp);
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
+    }   // ✅ FIXED: method closed properly
 
     @GetMapping("/all")
     public ResponseEntity<List<Employee>> getAllEmployees() {
@@ -65,5 +66,4 @@ public class EmployeeController {
             return new ResponseEntity<>("Cannot delete. Employee with ID " + id + " not found.", HttpStatus.NOT_FOUND);
         }
     }
-}
 }
