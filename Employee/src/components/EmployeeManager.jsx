@@ -20,7 +20,7 @@ const EmployeeManager = () => {
   const baseUrl = `${config.url}/employeeapi`;
 
   useEffect(() => {
-    
+    fetchAllEmployees();
   }, []);
 
   const fetchAllEmployees = async () => {
