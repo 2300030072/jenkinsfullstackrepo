@@ -12,7 +12,6 @@ import jakarta.persistence.Table;
 public class Employee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // ✅ Auto-generate ID
     @Column(name = "employee_id")
     private int id;
 
@@ -28,14 +27,9 @@ public class Employee {
     @Column(name = "employee_salary", nullable = false)
     private double salary;
 
-    public Employee() {}
+   
 
-    public Employee(String name, String email, String role, double salary) {
-        this.name = name;
-        this.email = email;
-        this.role = role;
-        this.salary = salary;
-    }
+   
 
     // ✅ Getters & Setters
     public int getId() { return id; }

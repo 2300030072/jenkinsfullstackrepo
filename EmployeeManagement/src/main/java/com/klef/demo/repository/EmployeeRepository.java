@@ -9,5 +9,5 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     
     // custom queries like StudentRepository
     Employee findByEmail(String email);
-    Employee findByRole(String role);   // optional extra example
+    Employee findByRole(String role);   
 }

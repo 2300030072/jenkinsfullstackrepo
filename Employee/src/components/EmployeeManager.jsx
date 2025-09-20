@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../style.css";
+import "./style.css";
 import config from "./config.js";
 
 const EmployeeManager = () => {
@@ -36,9 +36,9 @@ const EmployeeManager = () => {
     setEmployee({ ...employee, [e.target.name]: e.target.value });
   };
 
-  const validateForm = () => {
-    for (let key in employee) {
-      if (key !== "id" && (!employee[key] || employee[key].toString().trim() === "")) {
+   const validateForm = () => {
+    for (let key in student) {
+      if (!employee[key] || employee[key].toString().trim() === '') {
         setMessage(`Please fill out the ${key} field.`);
         return false;
       }
@@ -70,13 +70,13 @@ const EmployeeManager = () => {
     }
   };
 
-  const deleteEmployee = async (id) => {
+   const deleteStudent = async (id) => {
     try {
-      await axios.delete(`${baseUrl}/delete/${id}`);
-      setMessage("Employee deleted successfully.");
+      const res = await axios.delete(`${baseUrl}/delete/${id}`);
+      setMessage(res.data);
       fetchAllEmployees();
     } catch (error) {
-      setMessage("Error deleting employee.");
+      setMessage('Error deleting student.');
     }
   };
 
@@ -118,7 +118,7 @@ const EmployeeManager = () => {
 
       <h2>Employee Management System</h2>
 
-      {/* Add/Edit Employee Form */}
+    
       <div>
         <h3>{editMode ? "Edit Employee" : "Add Employee"}</h3>
         <div className="form-grid">
